@@ -58,7 +58,8 @@ module WDMA
       $config['watch'].each do |watch|
         query = watch['name'].downcase.gsub(/^a-z0-9/i, '')
 
-        if title.include?(query) && !$history.include?(title)
+        if title.include?(query) && !$history.include?(title) && \
+            ( watch['preference'].nil? ? true : title.include?(watch['preference']) ) 
           $history << title
           print "\n\nGrabbing #{item.title}\n\n"
           

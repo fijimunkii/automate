@@ -5,12 +5,15 @@ watch:
   -
     name: Workaholics
     category: !TV
+    preference: 720p
   -
     name: Game of Thrones
     category: !TV
+    preference: 720p
   -
     name: Almost Human
     category: !TV
+    preference: 720p
   -
     name: Teenage Mutant Ninja Turtles
     category: !TV
@@ -20,13 +23,11 @@ watch:
   -
     name: Cosmos
     category: !TV
+    preference: 720p
   -
     name: Continuum
     category: !TV
-
-prefer:
-  - 720
-  - HDBits
+    preference: 720p
 
 secret:
   email:
