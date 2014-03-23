@@ -4,7 +4,7 @@ require_relative 'wdma'
 require 'optparse'
 
 OptionParser.new do |opts|
-  opts.banner = "Usage: wdma.rb [options]"
+  opts.banner = "Usage: init.rb [options]"
 
   opts.on("-h", "--help", "Help.") do |v|
     p opts.banner
