@@ -7,7 +7,6 @@ IFS=$'\n' read -d '' -r -a lucky_people < mail_list.txt
 
 emails=$( printf ",%s" "${lucky_people[@]}" )
 emails=${emails:1}
-echo $emails
 
 curl -s --user "api:$pdf_mail_mailgun_key" \
     $pdf_mail_mailgun_address \
