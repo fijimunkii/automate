@@ -18,7 +18,7 @@ do
           ;;
         WDMA)
           echo "yarr"
-          BUNDLE_GEMFILE=wdma/Gemfile bundle exec wdma/init.rb -w
+          BUNDLE_GEMFILE=torrent/Gemfile bundle exec torrent/init.rb -w
           ;;
         Sleep)
           echo "..."
