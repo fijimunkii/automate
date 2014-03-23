@@ -1,0 +1,13 @@
+root=
+tempdir=
+destination=
+pdf_mail_from=
+pdf_mail_text=
+pdf_mail_subject=
+pdf_mail_mailgun_tag=
+pdf_mail_mailgun_key=
+pdf_mail_mailgun_address=
+torrent_mail_to=
+torrent_mail_from=
+torrent_mail_mailgun_key=
+torrent_mail_mailgun_address=

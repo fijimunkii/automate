@@ -1,0 +1,44 @@
+destination:
+watch:
+  -
+    name: yoga
+  -
+    name: Workaholics
+    category: !TV
+  -
+    name: Game of Thrones
+    category: !TV
+  -
+    name: Almost Human
+    category: !TV
+  -
+    name: Teenage Mutant Ninja Turtles
+    category: !TV
+  -
+    name: Person of Interest
+    category: !TV
+  -
+    name: Cosmos
+    category: !TV
+  -
+    name: Continuum
+    category: !TV
+
+prefer:
+  - 720
+  - HDBits
+
+secret:
+  email:
+  mailgun_key:
+  mailgun_domain:
+
+WDMA:
+  domain:
+  username:
+  password:
+
+PDF:
+  root:
+  destination:
+  tempdir:
