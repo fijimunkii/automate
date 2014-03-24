@@ -9,7 +9,6 @@ require 'rss'
 $config = YAML.load_file(File.join(__dir__, '../config.yml'))
 $cookiejar = File.join(__dir__, '.cookies')
 $tempfile = File.join(__dir__, '.temp')
-$destination = $config['destination']
 
 $bot = Mechanize.new
 $bot.pluggable_parser.default = Mechanize::Download
@@ -73,7 +72,7 @@ module WDMA
           print "\n\nGrabbing #{item.title}\n\n"
           
           title = title[7..(title.index('thread')-2)]
-          destination = $destination
+          destination = $config['destination']
           destination += "#{watch['category']}/" if !watch['category'].nil?
           $bot.get(item.link).save! "#{destination}#{title}.torrent"
           
@@ -107,7 +106,7 @@ module WDMA
         f.file_uploads.first.file_name = $config['PDF']['tempdir'] + filename
       end.submit 
       $bot.click(page.link_with(:text => /CLICK HERE/))
-      .save! $config['PDF']['destination'] + filename
+      .save! $config['destination'] + filename
     end
   end
 
