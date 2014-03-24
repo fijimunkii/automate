@@ -20,12 +20,17 @@ $history = []
 module WDMA
 
   def self.watch
-    print "Watching.."
-    while true
-      $config = YAML.load_file(File.join(__dir__, '../config.yml'))
-      self.login if !self.logged_in?
-      self.scrape
-      sleep 1800
+    begin
+      print "Watching.."
+      while true
+        $config = YAML.load_file(File.join(__dir__, '../config.yml'))
+        self.login if !self.logged_in?
+        self.scrape
+        sleep 1800
+      end
+    rescue => e
+      p "uncaught #{e} exception while handling connection: #{e.message}"
+      p "Stack trace: #{e.backtrace.map {|l| "  #{l}\n"}.join}"
     end
   end
 
