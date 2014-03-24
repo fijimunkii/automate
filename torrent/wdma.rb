@@ -29,8 +29,12 @@ module WDMA
         sleep 1800
       end
     rescue => e
-      p "uncaught #{e} exception while handling connection: #{e.message}"
-      p "Stack trace: #{e.backtrace.map {|l| "  #{l}\n"}.join}"
+      print "*"
+      open('../.log', 'a') do |f|
+        f << "\n\n#{Time.now}\n"
+        f << "uncaught #{e} exception while handling connection: #{e.message}\n"
+        f << "Stack trace: #{e.backtrace.map {|l| "  #{l}\n"}.join}"
+      end
     end
   end
 
