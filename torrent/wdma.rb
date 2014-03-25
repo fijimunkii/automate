@@ -3,12 +3,14 @@ $stdout.sync = true
 
 require 'rest-client'
 require 'mechanize'
+require 'logger'
 require 'yaml'
 require 'rss'
 
 $config = YAML.load_file(File.join(__dir__, '../config.yml'))
 $cookiejar = File.join(__dir__, '.cookies')
 $tempfile = File.join(__dir__, '.temp')
+$logger = Logger.new($stdout).tap { |log| log.progname = 'WDMA' }
 
 $bot = Mechanize.new
 $bot.pluggable_parser.default = Mechanize::Download
@@ -16,23 +18,23 @@ $bot.cookie_jar.load $cookiejar, :session => true, :format => :yaml
 
 $history = []
 
+
 module WDMA
 
   def self.watch
-    begin
-      print "Watching.."
-      while true
+    print "Watching.."
+    while true
+      begin
         $config = YAML.load_file(File.join(__dir__, '../config.yml'))
         self.login if !self.logged_in?
         self.scrape
         sleep 1800
-      end
-    rescue => e
-      print "*"
-      open('../.log', 'a') do |f|
-        f << "\n\n#{Time.now}\n"
-        f << "uncaught #{e} exception while handling connection: #{e.message}\n"
-        f << "Stack trace: #{e.backtrace.map {|l| "  #{l}\n"}.join}"
+      rescue => e
+        $logger.error e
+        open('../.log', 'a') do |f|
+          f << "uncaught #{e} exception while handling connection: #{e.message}\n"
+          f << "Stack trace: #{e.backtrace.map {|l| "  #{l}\n"}.join}"
+        end
       end
     end
   end
