@@ -10,6 +10,7 @@ require 'rss'
 $config = YAML.load_file(File.join(__dir__, '../config.yml'))
 $cookiejar = File.join(__dir__, '.cookies')
 $tempfile = File.join(__dir__, '.temp')
+$logfile = File.join(_dir__, '../.log')
 $logger = Logger.new($stdout).tap { |log| log.progname = 'WDMA' }
 
 $bot = Mechanize.new
@@ -31,7 +32,8 @@ module WDMA
         sleep 1800
       rescue => e
         $logger.error e
-        open('../.log', 'a') do |f|
+        $logger.error "Check the log file => #{$logfile}"
+        open($logfile, 'a') do |f|
           f << "uncaught #{e} exception while handling connection: #{e.message}\n"
           f << "Stack trace: #{e.backtrace.map {|l| "  #{l}\n"}.join}"
         end
